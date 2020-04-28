@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "OPampFunctions.h"
-
+#include <string.h>
 
 void displayOPamp() {
 
@@ -56,8 +56,9 @@ int UserPrompt() {
 
 void PromptA() {
 
-	OPamp FINDresistances;
 
+	OPamp FINDresistances[10]= {};
+	
 	printf("Please enter the Vo");
 	scanf("%f",&FINDresistances.Vout);
 	printf("Please enter V -");
@@ -65,9 +66,9 @@ void PromptA() {
 	printf("Please enter V + ");
 	scanf("%f",&FINDresistances.Vplus);
 
-FINDresistances.Rin[1] =FINDresistances.Vout+FINDresistances.Vminus;
+FINDresistances[0].Rin[0]=FINDresistances[0].Vout+FINDresistances[0].Vminus;
 
-	printf("Vout%f,vplus%f,vminus%f,R1%f",FINDresistances.Vout,FINDresistances.Vplus,FINDresistances.Vminus,FINDresistances.Rin[0]);
+	printf("Vout%f,\nplus%f,\nvminus%f,\nR1%f",FINDresistances[0].Vout,FINDresistances[0].Vplus,FINDresistances[0].Vminus,FINDresistances[0].Rin[0]);
 		
 	
 

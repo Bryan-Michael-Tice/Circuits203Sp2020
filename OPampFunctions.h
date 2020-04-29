@@ -4,8 +4,9 @@ struct _OPamp {
 
 
 	double Vout;
-	double Vplus;
-	double Vminus;
+	double VccPlus;
+	double VccMinus;
+	double Rf;
 	double Rin[10];
 	double Vin[10];
 

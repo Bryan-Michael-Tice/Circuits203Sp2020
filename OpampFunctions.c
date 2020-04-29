@@ -70,7 +70,7 @@ void PromptA() {
 	scanf("%lf",&FINDresistances[0].Vplus);
 
 
-	printf("Vout%f,\nplus%f,\nvminus%f,\n",FINDresistances[0].Vout,FINDresistances[0].Vplus,FINDresistances[0].Vminus);
+	printf("Vout\033[0;31m%f\033[0m,\nplus%f,\nvminus%f,\n",FINDresistances[0].Vout,FINDresistances[0].Vplus,FINDresistances[0].Vminus);
 		
 	
 

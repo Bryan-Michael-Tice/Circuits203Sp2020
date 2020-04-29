@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "OPampFunctions.h"
 #include <string.h>
+#include <stdlib.h>
 
 void displayOPamp() {
 
@@ -57,7 +58,9 @@ int UserPrompt() {
 void PromptA() {
 
 
-	OPamp FINDresistances[10]= {};
+	OPamp *FINDresistances;
+
+	FINDresistances =malloc(1*sizeof(OPamp));
 	
 	printf("Please enter the Vo");
 	scanf("%f",&FINDresistances->Vout);
@@ -66,13 +69,13 @@ void PromptA() {
 	printf("Please enter V + ");
 	scanf("%f",&FINDresistances->Vplus);
 
-FINDresistances->Rin=FINDresistances->Vout+FINDresistances->Vminus;
+FINDresistances->Vout+FINDresistances->Vminus=&FINDresistances->Rin[0];
 
-	printf("Vout%f,\nplus%f,\nvminus%f,\nR1%f",FINDresistances->Vout,FINDresistances->Vplus,FINDresistances->Vminus,FINDresistances->Rin);
+	printf("Vout%f,\nplus%f,\nvminus%f,\nR1%f",FINDresistances->Vout,FINDresistances->Vplus,FINDresistancesxx->Vminus,FINDresistances->Rin);
 		
 	
 
-
+free(FINDresistances);
 
 }
 

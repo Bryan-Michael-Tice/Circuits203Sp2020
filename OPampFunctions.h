@@ -14,7 +14,10 @@ typedef struct _OPamp OPamp;
 
 void displayOPamp ();
 
-int UserPrompt();
+int UserPrompt(char *USERname);
 
 void PromptA();
-	
+
+void PromptB();
+
+void displayOPampComplete(char *USERname);

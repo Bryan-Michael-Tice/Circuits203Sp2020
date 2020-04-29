@@ -4,10 +4,10 @@ int main(){
 #include <string.h>
 
 
+	char *User;
 	int choice;
 	displayOPamp();
-	choice = UserPrompt();
-
+	choice = UserPrompt(User);
 	
 	
 	printf("%d user chose ",choice);
@@ -18,9 +18,11 @@ int main(){
 		PromptA();
 	}
 	else{
-	//	PromptValuesB();
+		
+		PromptB();
 	}
 
+	displayOPampComplete(User); 
 
 	return 0;
 }

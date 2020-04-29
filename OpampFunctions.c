@@ -60,15 +60,15 @@ void PromptA() {
 	OPamp FINDresistances[10]= {};
 	
 	printf("Please enter the Vo");
-	scanf("%f",&FINDresistances.Vout);
+	scanf("%f",&FINDresistances->Vout);
 	printf("Please enter V -");
-	scanf("%f",&FINDresistances.Vminus);
+	scanf("%f",&FINDresistances->Vminus);
 	printf("Please enter V + ");
-	scanf("%f",&FINDresistances.Vplus);
+	scanf("%f",&FINDresistances->Vplus);
 
-FINDresistances[0].Rin[0]=FINDresistances[0].Vout+FINDresistances[0].Vminus;
+FINDresistances->Rin=FINDresistances->Vout+FINDresistances->Vminus;
 
-	printf("Vout%f,\nplus%f,\nvminus%f,\nR1%f",FINDresistances[0].Vout,FINDresistances[0].Vplus,FINDresistances[0].Vminus,FINDresistances[0].Rin[0]);
+	printf("Vout%f,\nplus%f,\nvminus%f,\nR1%f",FINDresistances->Vout,FINDresistances->Vplus,FINDresistances->Vminus,FINDresistances->Rin);
 		
 	
 

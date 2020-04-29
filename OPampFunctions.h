@@ -7,6 +7,7 @@ struct _OPamp {
 	double Vplus;
 	double Vminus;
 	double Rin[10];
+	double Vin[10];
 
 };
 

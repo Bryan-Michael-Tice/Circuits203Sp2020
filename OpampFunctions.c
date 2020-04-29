@@ -60,9 +60,19 @@ void PromptA() {
 
 
         OPamp *FINDresistances;
-
+	size_t resistances=0;
 	FINDresistances =malloc(1*sizeof(OPamp));
+	printf("How many Resistors do you want to use?");
+	scanf("%d",&resistances);
 	
+	for(size_t i=0;i<resistances;++i){
+	
+		printf("Please Enter Resistances number #: %d\n",i);
+		scanf("%d",&FINDresistances[i].Rin[i]);
+
+		printf("\nResistances number #%d is %d\n",i,FINDresistances[i].Rin[i]);
+	}
+
 	printf("Please enter the Vo");
 	scanf("%lf",&FINDresistances[0].Vout);
 	printf("Please enter V -");

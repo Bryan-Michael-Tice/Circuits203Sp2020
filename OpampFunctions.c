@@ -58,20 +58,19 @@ int UserPrompt() {
 void PromptA() {
 
 
-	OPamp *FINDresistances;
+        OPamp *FINDresistances;
 
 	FINDresistances =malloc(1*sizeof(OPamp));
 	
 	printf("Please enter the Vo");
-	scanf("%f",&FINDresistances->Vout);
+	scanf("%f",&FINDresistances[0].Vout);
 	printf("Please enter V -");
-	scanf("%f",&FINDresistances->Vminus);
+	scanf("%f",&FINDresistances[0].Vminus);
 	printf("Please enter V + ");
-	scanf("%f",&FINDresistances->Vplus);
+	scanf("%f",&FINDresistances[0].Vplus);
 
-FINDresistances->Vout+FINDresistances->Vminus=&FINDresistances->Rin[0];
 
-	printf("Vout%f,\nplus%f,\nvminus%f,\nR1%f",FINDresistances->Vout,FINDresistances->Vplus,FINDresistancesxx->Vminus,FINDresistances->Rin);
+	printf("Vout%f,\nplus%f,\nvminus%f,\n",FINDresistances[0].Vout,FINDresistances[0].Vplus,FINDresistances[0].Vminus);
 		
 	
 

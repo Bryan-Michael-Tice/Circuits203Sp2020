@@ -4,26 +4,23 @@ int main(){
 #include <string.h>
 
 
-	char *User;
+
 	int choice;
 	displayOPamp();
-	choice = UserPrompt(User);
+	UserPrompt();
 	
+	OPamp *newExampleOpAmp;	
 	
-	printf("%d user chose ",choice);
-
-	if(choice == 1){
+	newExampleOpAmp = malloc(1*sizeof(OPamp));
 	
-	
-		PromptA();
-	}
-	else{
+		PromptA(newExampleOpAmp);
 		
-		PromptB();
-	}
-
-	displayOPampComplete(User); 
-
+		PromptB(newExampleOpAmp);
 	
+
+	displayOPampComplete(); 
+
+	free(newExampleOpAmp);
+
 	return 0;
 }

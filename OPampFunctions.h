@@ -9,6 +9,10 @@ struct _OPamp {
 	double Rf;
 	double Rin[10];
 	double Vin[10];
+	double Va;
+	double Vb;
+	double Vc;
+
 
 };
 
@@ -16,10 +20,10 @@ typedef struct _OPamp OPamp;
 
 void displayOPamp ();
 
-int UserPrompt(char *USERname);
+void UserPrompt();
 
-void PromptA();
+void PromptA(OPamp *AmpIn);
 
-void PromptB();
+void PromptB(OPamp *AmpIn);
 
-void displayOPampComplete(char *USERname);
+void displayOPampComplete();

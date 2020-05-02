@@ -11,18 +11,22 @@
 
 void displayOPamp() {
 
-	printf("		WELCOME TO CIRCUIT 203 EXTRA CREDIT PROJECT \n");
-	printf("		 Created by Bryan Tice and Paul Tice\n");
-	printf("\n\n		 Professor: Dr. Ferengi\n\n");
+
+	size_t intro=0;
+
+	printf("\n\n		WELCOME TO CIRCUIT 203 EXTRA CREDIT PROJECT \n");
+	printf("\n		 Created by Bryan Tice and Paul Tice\n\n");
+	printf("\n\n		 Instructor: Dr. Ahmed Elfrgani\n\n");
+	printf("\n\n	 Please examine the OP AMP below and follow the instructions\n to solve it.\n"); 
 
 
 
 
 	
-	printf("\n                IDEAL OP AMP                                                                   \n");
+	printf("\n                IDEAL OP AMP problem 5.12 in textbook                                           \n");
 	printf("                             _________\033[1;31m Rf\033[0m ___________                           \n");
 	printf("        	             |                      |                           \n");
-	printf("                             |....__    \033[1;31m V-\033[0m         |                           \n");
+	printf("                             |....__    \033[1;31m V+\033[0m         |                           \n");
 	printf("--\033[1;31mR1\033[0m----------------------|  |      -               |                           \n");
 	printf("\033[1;36m^\033[0m    --\033[1;31mR2\33[0m-----------------|--| -     --_            |--------                   \n");
 	printf("\033[1;36m|       ^ \033[0m --\033[1;31mR3\033[0m-----------|  |         _ >               +                      \n");
@@ -35,13 +39,15 @@ void displayOPamp() {
 	printf("                   _                                    ----                    \n");
 	printf("                   .                                     --                     \n");
         printf("                                                          .                     \n");
-
-	
+	do{
+	printf("\n\n Is this a SUMMING AMP? ENTER 1 for yes and 0 for no\n\n");	
+	scanf("%d",&intro);
+	}while(intro!=1);
 
 
 }
 
-int UserPrompt(char *USERname) {
+void UserPrompt() {
 
 	int temp=0;
         char name[20];   
@@ -50,82 +56,85 @@ int UserPrompt(char *USERname) {
 	scanf("%s",name);
 //strlen,strcopy
 
-	printf("\n\nThank you\033[1;34m %s\033[0m,  Would you like to find V1-V3 or Vo?\n",name);
-
-	do{	
-		printf("\n\033[0;36m PLEASE ENTER THE NUMBER\033[0m\033[0;31m 1 \033[0m\033[0;36m for V1-V3 or OR THE NUMBER\033[0m\033[0;31m 2\033[0m\033[0;36m for Vo?\033[0m\n");
-
-		scanf("%d",&temp);
-
-	}while(temp!=2 && temp!=1);
-	
-	return temp;
+	printf("\n\nThank you\033[1;34m %s\033[0m,To find Vo please enter the requested values below:   \n",name);
 
 
 }
 
 
-void PromptA() {
+
+void PromptA(OPamp *AmpIn) {
 
 
- 	OPamp *FINDresistances;
-	size_t resistances=0;
-	FINDresistances =malloc(1*sizeof(OPamp));
+ //	OPamp *FINDresistances;
+	size_t resistances=3;
+//	FINDresistances =malloc(1*sizeof(OPamp));
 	
 	
-	printf("How many Resistors do you want to use?");
-	scanf("%d",&resistances);
+//	printf("How many Resistors do you want to use?");
+//	scanf("%d",&resistances);
 	
 	for(size_t i=0;i<resistances;++i){
 	
-		printf("Please Enter Resistances number #: %d\n",i);
-		scanf("%d",&FINDresistances[i].Rin[i]);
+		printf("Please Enter Resistances number #: %d\n",i+1);
+		scanf("%lf",&AmpIn[0].Rin[i]);
 
 	}
 
-	printf("Please enter the Vo");
-	scanf("%lf",&FINDresistances[0].Vout);
 	printf("Please enter V - or -Vcc");
-	scanf("%lf",&FINDresistances[0].VccMinus);
+	scanf("%lf",&AmpIn[0].VccMinus);
 	printf("Please enter V + or Vcc ");
-	scanf("%lf",&FINDresistances[0].VccPlus);
+	scanf("%lf",&AmpIn[0].VccPlus);
 	printf("Please enter Rf ");
-	scanf("%lf",&FINDresistances[0].Rf);
+	scanf("%lf",&AmpIn[0].Rf);
+
+	printf("Please enter Va");
+	scanf("%lf",&AmpIn[0].Vin[0]);
+	printf("Please enter Vb");
+	scanf("%lf",&AmpIn[0].Vin[1]);
+	printf("Please enter Vc");
+	scanf("%lf",&AmpIn[0].Vin[2]);
+
 
 /*
-	printf("The Vo entered is: \033[0;31m%f\033[0m,\nThe VCC or V+ entered is: \033[0;31m%f\033[0m,\nThe V- Or -VCC entered is:\033[0;31m%f\033[0m,\nThe Rf entered is: \033[0;31m%f\033[0m",FINDresistances[0].Vout,FINDresistances[0].VccPlus,FINDresistances[0].VccMinus,FINDresistances[0].Rf);
-		
-*/
-
-
+	printf("\nThe VCC or V+ entered is: \033[0;31m%f\033[0m,\nThe V- Or -VCC entered is:\033[0;31m%f\033[0m,\nThe Rf entered is: \033[0;31m%f\033[0m",FINDresistances[0].Vout,FINDresistances[0].VccPlus,FINDresistances[0].VccMinus,FINDresistances[0].Rf);
 	
+*/        
+//	AmpIn=FINDresistances;
 
-
-
-
-
-	free(FINDresistances);
+//	free(FINDresistances);
 
 
 }
 
 
-void PromptB() {
+void PromptB(OPamp *AmpIn) {
 
 
-        OPamp *FINDvO;
-
-	FINDvO =malloc(1*sizeof(OPamp));
 	
+	printf("                             _________\033[1;31m%0.f\033[0m ___________                           \n",AmpIn[0].Rf);
+	printf("        	             |                      |                           \n");
+	printf("                             |....__    \033[1;31m%0.1f\033[0m        |                           \n",AmpIn[0].VccPlus);
+	printf("--\033[1;31m%0.f\033[0m----------------------|  |      -               |                           \n",AmpIn[0].Rin[0]);
+	printf("\033[1;36m^\033[0m    --\033[1;31m%0.1f\33[0m---------------|--| -     --_            |--------                   \n",AmpIn[0].Rin[1]);
+	printf("\033[1;36m|       ^ \033[0m --\033[1;31m%0.f\033[0m-----------|  |         _ >               +                      \n",AmpIn[0].Rin[2]);
+	printf("\033[1;36m|       |    ^  \033[0m             |       --                                         \n");
+	printf("\033[1;36m|       |    |  \033[0m   ----------| +    ..             \033[1;31m      Vo \033[0m`                    \n");
+	printf("\033[1;36m%0.1f  %0.1f  %0.1f \033[0m  |         |...--    \033[1;31m%0.f\033[0m                                     \n",AmpIn[0].Vin[0],AmpIn[0].Vin[1],AmpIn[0].Vin[2],AmpIn[0].VccMinus);
+	printf("\033[1;36m|       |    |    \033[0m |                                      -                     \n");
+	printf("\033[1;36m                  \033[0m |                                                            \n");
+	printf("                  ___                                     |                     \n");
+	printf("                   _                                    ----                    \n");
+	printf("                   .                                     --                     \n");
+        printf("                                                          .                     \n");
 		
 	
 
-free(FINDvO);
 
 }
 
 
-void displayOPampComplete(char *USERname) {
+void displayOPampComplete() {
 
 	
 

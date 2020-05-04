@@ -20,7 +20,6 @@ int main(){
 
 	        PromptC(newExampleOpAmp);	
 
-		PromptB(newExampleOpAmp);
 	
 		free(newExampleOpAmp);
 

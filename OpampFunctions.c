@@ -52,7 +52,7 @@ void UserPrompt() {
 	int temp=0;
         char name[20];   
   
-	printf("Please enter your name\n");
+	printf("Please enter your first name only\n");
 	scanf("%s",name);
 //strlen,strcopy
 
@@ -76,33 +76,26 @@ void PromptA(OPamp *AmpIn) {
 	
 	for(size_t i=0;i<resistances;++i){
 	
-		printf("Please Enter Resistances number #: %d\n",i+1);
+		printf("Please Enter Resistor number #: %d\n",i+1);
 		scanf("%lf",&AmpIn[0].Rin[i]);
 
 	}
 
-	printf("Please enter V - or -Vcc");
+	printf("Please enter V - or -Vcc: \n");
 	scanf("%lf",&AmpIn[0].VccMinus);
-	printf("Please enter V + or Vcc ");
+	printf("Please enter V + or Vcc: \n ");
 	scanf("%lf",&AmpIn[0].VccPlus);
-	printf("Please enter Rf ");
+	printf("Please enter Rf : \n ");
 	scanf("%lf",&AmpIn[0].Rf);
 
-	printf("Please enter Va");
+	printf("Please enter Va: \n");
 	scanf("%lf",&AmpIn[0].Vin[0]);
-	printf("Please enter Vb");
+	printf("Please enter Vb: \n");
 	scanf("%lf",&AmpIn[0].Vin[1]);
-	printf("Please enter Vc");
+	printf("Please enter Vc: \n");
 	scanf("%lf",&AmpIn[0].Vin[2]);
 
 
-/*
-	printf("\nThe VCC or V+ entered is: \033[0;31m%f\033[0m,\nThe V- Or -VCC entered is:\033[0;31m%f\033[0m,\nThe Rf entered is: \033[0;31m%f\033[0m",FINDresistances[0].Vout,FINDresistances[0].VccPlus,FINDresistances[0].VccMinus,FINDresistances[0].Rf);
-	
-*/        
-//	AmpIn=FINDresistances;
-
-//	free(FINDresistances);
 
 
 }
@@ -110,8 +103,16 @@ void PromptA(OPamp *AmpIn) {
 
 void PromptB(OPamp *AmpIn) {
 
+	OPamp *temp;
 
-	
+	temp=calloc(1,sizeof(OPamp));
+
+	for (size_t i=0;i<3;i++)
+	{
+ 		temp[0].Vout=(( (-1* (AmpIn[0].Rf))/AmpIn[0].Rin[i])*AmpIn[0].Vin[i]);
+		AmpIn[0].Vout+=temp[0].Vout;
+	}
+
 	printf("                             _________\033[1;31m%0.f\033[0m ___________                           \n",AmpIn[0].Rf);
 	printf("        	             |                      |                           \n");
 	printf("                             |....__    \033[1;31m%0.1f\033[0m        |                           \n",AmpIn[0].VccPlus);
@@ -119,7 +120,7 @@ void PromptB(OPamp *AmpIn) {
 	printf("\033[1;36m^\033[0m    --\033[1;31m%0.1f\33[0m---------------|--| -     --_            |--------                   \n",AmpIn[0].Rin[1]);
 	printf("\033[1;36m|       ^ \033[0m --\033[1;31m%0.f\033[0m-----------|  |         _ >----------  +                      \n",AmpIn[0].Rin[2]);
 	printf("\033[1;36m|       |    ^  \033[0m             |       --                                         \n");
-	printf("\033[1;36m|       |    |  \033[0m   ----------| +    ..             \033[1;31m      Vo \033[0m`                    \n");
+	printf("\033[1;36m|       |    |  \033[0m   ----------| +    ..             \033[1;31m    %0.1f \033[0m`                    \n",AmpIn[0].Vout);
 	printf("\033[1;36m%0.1f  %0.1f  %0.1f \033[0m  |         |...--    \033[1;31m%0.f\033[0m                                     \n",AmpIn[0].Vin[0],AmpIn[0].Vin[1],AmpIn[0].Vin[2],AmpIn[0].VccMinus);
 	printf("\033[1;36m|       |    |    \033[0m |                                      -                     \n");
 	printf("\033[1;36m                  \033[0m |                                                            \n");
@@ -129,36 +130,68 @@ void PromptB(OPamp *AmpIn) {
         printf("                                                          .                     \n");
 		
 	
+	
+	printf("\n \033[1;31m The Value for Vo is =  %0.1f\n\033[0m\n\n",AmpIn[0].Vout);
 
-
+	free(temp);
 }
 
 
 void PromptC(OPamp *AmpIn) {
 
 	size_t choice=0;
-	
-/*	if(AmpIn[0].VccPlus<=AmpIn[0].Vout && AmpIn[0].VccMinus>=AmpIn[0].Vout){
-	
-		printf("Omp amp is not saturated"); 
-				return;
-	}
-	else{*/
-	
+	float UpperLimit,LowerLimit;
 
-	printf("Pick Resistor numer to change 1, 2 or 3");
+	printf("If two voltages remained the same, and the other changed. What range would you like to find for the op amp to operate within it's limits? /n PICK 1 for Va, 2 for Vb and 3 for Vc");
 	scanf("%d",&choice);
  	
 
-	printf("Please enter the new Resistance value");
-	scanf("%lf",&AmpIn[0].Rin[choice-1]);
+
+	if(choice==1){
 	
-		
-//	}
+	UpperLimit=(-AmpIn[0].VccPlus -((AmpIn[0].Vin[1]*(AmpIn[0].Rf/AmpIn[0].Rin[1]))+(AmpIn[0].Vin[2]*(AmpIn[0].Rf/AmpIn[0].Rin[2]))));
+	UpperLimit= UpperLimit/((AmpIn[0].Rf/AmpIn[0].Rin[0]));
+	
+	LowerLimit=(-AmpIn[0].VccMinus -((AmpIn[0].Vin[1]*(AmpIn[0].Rf/AmpIn[0].Rin[1]))+(AmpIn[0].Vin[2]*(AmpIn[0].Rf/AmpIn[0].Rin[2]))));
+	LowerLimit= LowerLimit/((AmpIn[0].Rf/AmpIn[0].Rin[0]));
+
+	
+	printf("\n\nLimit 1 found:%f\n\n",UpperLimit);
+	printf("\n\nLimit 2 found:%f\n\n",LowerLimit);
+	
+	}
 
 
-//	printf("\n\nEntered:%f\n\n",AmpIn[0].Rin[choice-1]);
+
+	if(choice==2){
 	
+	UpperLimit=(-AmpIn[0].VccPlus -((AmpIn[0].Vin[0]*(AmpIn[0].Rf/AmpIn[0].Rin[0]))+(AmpIn[0].Vin[2]*(AmpIn[0].Rf/AmpIn[0].Rin[2]))));
+	UpperLimit= UpperLimit/((AmpIn[0].Rf/AmpIn[0].Rin[1]));
 	
+	LowerLimit=(-AmpIn[0].VccMinus -((AmpIn[0].Vin[0]*(AmpIn[0].Rf/AmpIn[0].Rin[0]))+(AmpIn[0].Vin[2]*(AmpIn[0].Rf/AmpIn[0].Rin[2]))));
+	LowerLimit= LowerLimit/((AmpIn[0].Rf/AmpIn[0].Rin[1]));
+
 	
+	printf("\n\nLimit 1 found:%f\n\n",UpperLimit);
+	printf("\n\nLimit 2 found:%f\n\n",LowerLimit);
+	
+	}
+
+
+	if(choice==3){
+	
+	UpperLimit=(-AmpIn[0].VccPlus -((AmpIn[0].Vin[0]*(AmpIn[0].Rf/AmpIn[0].Rin[0]))+(AmpIn[0].Vin[1]*(AmpIn[0].Rf/AmpIn[0].Rin[1]))));
+	UpperLimit= UpperLimit/((AmpIn[0].Rf/AmpIn[0].Rin[2]));
+	
+	LowerLimit=(-AmpIn[0].VccMinus -((AmpIn[0].Vin[0]*(AmpIn[0].Rf/AmpIn[0].Rin[0]))+(AmpIn[0].Vin[1]*(AmpIn[0].Rf/AmpIn[0].Rin[1]))));
+	LowerLimit= LowerLimit/((AmpIn[0].Rf/AmpIn[0].Rin[2]));
+
+	
+	printf("\n\nLimit 1 found:%f\n\n",UpperLimit);
+	printf("\n\nLimit 2 found:%f\n\n",LowerLimit);
+	
+	}
+			
+    	    
+ 
 }

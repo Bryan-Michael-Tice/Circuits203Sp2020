@@ -11,16 +11,18 @@ int main(){
 	
 	OPamp *newExampleOpAmp;	
 	
-	newExampleOpAmp = malloc(1*sizeof(OPamp));
+	newExampleOpAmp = calloc(1,sizeof(OPamp));
 	
 		PromptA(newExampleOpAmp);
 		
 		PromptB(newExampleOpAmp);
 	
 
-	displayOPampComplete(); 
+	        PromptC(newExampleOpAmp);	
 
-	free(newExampleOpAmp);
+		PromptB(newExampleOpAmp);
+	
+		free(newExampleOpAmp);
 
 	return 0;
 }

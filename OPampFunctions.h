@@ -26,4 +26,4 @@ void PromptA(OPamp *AmpIn);
 
 void PromptB(OPamp *AmpIn);
 
-void displayOPampComplete();
+void PromptC(OPamp *AmpIn);

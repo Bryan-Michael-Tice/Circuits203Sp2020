@@ -29,7 +29,7 @@ void displayOPamp() {
 	printf("                             |....__    \033[1;31m V+\033[0m         |                           \n");
 	printf("--\033[1;31mR1\033[0m----------------------|  |      -               |                           \n");
 	printf("\033[1;36m^\033[0m    --\033[1;31mR2\33[0m-----------------|--| -     --_            |--------                   \n");
-	printf("\033[1;36m|       ^ \033[0m --\033[1;31mR3\033[0m-----------|  |         _ >               +                      \n");
+	printf("\033[1;36m|       ^ \033[0m --\033[1;31mR3\033[0m-----------|  |         _ >---------------- +                      \n");
 	printf("\033[1;36m|       |    ^  \033[0m             |       --                                         \n");
 	printf("\033[1;36m|       |    |  \033[0m   ----------| +    ..             \033[1;31m      Vo \033[0m`                    \n");
 	printf("\033[1;36mV1      V2   V3  \033[0m  |         |...--    \033[1;31m V- \033[0m                                     \n");
@@ -117,7 +117,7 @@ void PromptB(OPamp *AmpIn) {
 	printf("                             |....__    \033[1;31m%0.1f\033[0m        |                           \n",AmpIn[0].VccPlus);
 	printf("--\033[1;31m%0.f\033[0m----------------------|  |      -               |                           \n",AmpIn[0].Rin[0]);
 	printf("\033[1;36m^\033[0m    --\033[1;31m%0.1f\33[0m---------------|--| -     --_            |--------                   \n",AmpIn[0].Rin[1]);
-	printf("\033[1;36m|       ^ \033[0m --\033[1;31m%0.f\033[0m-----------|  |         _ >               +                      \n",AmpIn[0].Rin[2]);
+	printf("\033[1;36m|       ^ \033[0m --\033[1;31m%0.f\033[0m-----------|  |         _ >----------  +                      \n",AmpIn[0].Rin[2]);
 	printf("\033[1;36m|       |    ^  \033[0m             |       --                                         \n");
 	printf("\033[1;36m|       |    |  \033[0m   ----------| +    ..             \033[1;31m      Vo \033[0m`                    \n");
 	printf("\033[1;36m%0.1f  %0.1f  %0.1f \033[0m  |         |...--    \033[1;31m%0.f\033[0m                                     \n",AmpIn[0].Vin[0],AmpIn[0].Vin[1],AmpIn[0].Vin[2],AmpIn[0].VccMinus);
@@ -134,8 +134,31 @@ void PromptB(OPamp *AmpIn) {
 }
 
 
-void displayOPampComplete() {
+void PromptC(OPamp *AmpIn) {
 
+	size_t choice=0;
+	
+/*	if(AmpIn[0].VccPlus<=AmpIn[0].Vout && AmpIn[0].VccMinus>=AmpIn[0].Vout){
+	
+		printf("Omp amp is not saturated"); 
+				return;
+	}
+	else{*/
 	
 
+	printf("Pick Resistor numer to change 1, 2 or 3");
+	scanf("%d",&choice);
+ 	
+
+	printf("Please enter the new Resistance value");
+	scanf("%lf",&AmpIn[0].Rin[choice-1]);
+	
+		
+//	}
+
+
+//	printf("\n\nEntered:%f\n\n",AmpIn[0].Rin[choice-1]);
+	
+	
+	
 }
